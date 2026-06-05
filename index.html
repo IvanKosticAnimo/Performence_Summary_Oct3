@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Performance Summary Report - Week 6</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; background: #ffffff; color: #1a1a2e; font-size: 14px; line-height: 1.7; }
+.wrapper { max-width: 940px; margin: 0 auto; padding: 48px 40px 60px; }
+h1 { font-size: 28px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
+.subtitle { font-size: 14px; color: #555; margin-bottom: 32px; }
+h2 { font-size: 20px; font-weight: 700; color: #1a1a2e; margin: 36px 0 16px; }
+h3 { font-size: 16px; font-weight: 600; color: #1a1a2e; margin: 24px 0 12px; }
+p { margin-bottom: 14px; color: #333; font-size: 14px; line-height: 1.75; }
+ul { margin: 10px 0 18px 24px; }
+li { margin-bottom: 10px; color: #333; font-size: 14px; line-height: 1.7; }
+mark { background: #fff59d; padding: 1px 4px; border-radius: 2px; }
+.chart-container { border: 1px solid #e0e0e0; border-radius: 6px; padding: 20px; margin: 20px 0; background: #fff; box-sizing: border-box; width: 100%; }
+.chart-wrap { position: relative; height: 320px; width: 100%; box-sizing: border-box; }
+.chart-wrap canvas { max-width: 100% !important; height: 100% !important; }
+.summary-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13px; }
+.summary-table th { background: #f5f5f5; border: 1px solid #ddd; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+.summary-table td { border: 1px solid #ddd; padding: 9px 14px; }
+.summary-table tr:nth-child(even) td { background: #fafafa; }
+.summary-table .highlight td { font-weight: 700; background: #f0f0f0; }
+.td-right { text-align: right; }
+.up { color: #2d6a4f; font-weight: 600; }
+.down { color: #c1121f; font-weight: 600; }
+.sky-color { color: #0891b2; font-weight: 600; }
+.port-color { color: #800020; font-weight: 600; }
+.city-color { color: #2563eb; font-weight: 600; }
+.confidential { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #eee; text-align: center; }
+.actions-list { counter-reset: action; list-style: none; margin-left: 0; padding-left: 0; }
+.actions-list li { counter-increment: action; margin-bottom: 14px; padding-left: 32px; position: relative; }
+.actions-list li::before { content: counter(action) "."; position: absolute; left: 0; font-weight: 700; color: #800020; font-size: 15px; }
+.alert-box { border-left: 4px solid #c1121f; background: #fef2f2; padding: 16px 20px; margin: 20px 0; border-radius: 0 6px 6px 0; }
+.alert-box strong { color: #c1121f; }
+.info-box { border-left: 4px solid #2563eb; background: #eff6ff; padding: 16px 20px; margin: 20px 0; border-radius: 0 6px 6px 0; }
+.info-box strong { color: #2563eb; }
+@media print {
+  body { background: white; }
+  .wrapper { padding: 24px; max-width: 100%; }
+  .chart-container { page-break-inside: avoid; }
+  h2 { page-break-after: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<h1>Performance Summary Report</h1>
+<div class="subtitle">Week Ending 19 October 2025  |  Reporting Period: 13 October - 19 October 2025  |  Week 6 of Reporting</div>
+
+<div class="info-box"><strong>HISTORICAL REPORT:</strong> This report has been retrospectively generated as part of a backfill exercise. The data is sourced from the same operational systems used for current reporting but the report itself was not produced at the time of the period. WoW comparisons are calculated from historical data only.</div>
+
+<h2>Summary Metrics</h2>
+<table class="summary-table">
+<tr><th>Metric</th><th class="td-right">Value</th><th class="td-right">WoW Change</th></tr>
+
+<tr><td>Gross Gaming Revenue</td><td class="td-right"><strong>$122,122</strong></td><td class="td-right up">+212.3%</td></tr>
+<tr><td>Total Wagered</td><td class="td-right"><strong>$2.44M</strong></td><td class="td-right up">+157.2%</td></tr>
+<tr><td>GGR Margin</td><td class="td-right"><strong>5.00%</strong></td><td class="td-right up">+0.88pp</td></tr>
+<tr><td>Total Rounds Played</td><td class="td-right"><strong>46,917</strong></td><td class="td-right up">+53.4%</td></tr>
+<tr><td>Active Player-Hours</td><td class="td-right"><strong>1,462</strong></td><td class="td-right up">+72.6%</td></tr>
+<tr><td>Avg Session Length</td><td class="td-right"><strong>6.0 mins</strong></td><td class="td-right up">+12.8%</td></tr>
+
+</table>
+
+<h2>1. Executive Commentary</h2>
+<p>The week ending 19 October 2025 delivered <mark>$122,122 GGR</mark> on $2.44M wagered at a portfolio margin of <mark>5.00%</mark>. GGR represents a +212.3% increase WoW versus Week 5's $39,101. Wagered volume rose 157.2% WoW with margin expansion of 0.88pp.</p>
+<p>Game performance: <span class="port-color">Port Roulette</span> contributed $27,130 GGR (22.2% share) on $984.6K wagered at 2.76% margin; <span class="sky-color">Sky Roulette</span> contributed $94,992 GGR (77.8% share) on $1.46M wagered at 6.52% margin.</p>
+
+<h2>2. Performance by Game</h2>
+<table class="summary-table">
+<tr><th>Game</th><th class="td-right">GGR</th><th class="td-right">WoW</th><th class="td-right">Share</th><th class="td-right">Wagered</th><th class="td-right">WoW</th><th class="td-right">Margin</th><th class="td-right">WoW</th><th class="td-right">Rounds</th><th class="td-right">PH</th><th class="td-right">Sess</th><th class="td-right">Conv</th></tr>
+
+<tr><td class="port-color">Port Roulette</td><td class="td-right">$27,130</td><td class="td-right up">+16.4%</td><td class="td-right">22.2%</td><td class="td-right">$984.6K</td><td class="td-right up">+371.5%</td><td class="td-right">2.76%</td><td class="td-right down">-8.40pp</td><td class="td-right">22,023</td><td class="td-right">575</td><td class="td-right">5.6m</td><td class="td-right">42.9%</td></tr>
+
+<tr><td class="sky-color">Sky Roulette</td><td class="td-right">$94,992</td><td class="td-right up">+501.1%</td><td class="td-right">77.8%</td><td class="td-right">$1.46M</td><td class="td-right up">+96.7%</td><td class="td-right">6.52%</td><td class="td-right up">+4.39pp</td><td class="td-right">24,894</td><td class="td-right">887</td><td class="td-right">6.3m</td><td class="td-right">42.0%</td></tr>
+
+</table>
+
+<h2>3. Day-of-Week GGR Performance</h2>
+<div class="chart-container">
+<div class="chart-wrap"><canvas id="dowChart"></canvas></div>
+</div>
+
+<table class="summary-table">
+<tr><th>Day</th><th class="td-right">GGR</th><th class="td-right">Rounds</th><th class="td-right">Wagered</th></tr>
+<tr><td>Mon 13 Oct</td><td class="td-right">$30,673</td><td class="td-right">6,041</td><td class="td-right">$167.1K</td></tr>
+<tr><td>Tue 14 Oct</td><td class="td-right">$65,179</td><td class="td-right">6,122</td><td class="td-right">$462.9K</td></tr>
+<tr><td>Wed 15 Oct</td><td class="td-right">$-2,303</td><td class="td-right">7,398</td><td class="td-right">$285.1K</td></tr>
+<tr><td>Thu 16 Oct</td><td class="td-right">$-1,977</td><td class="td-right">6,874</td><td class="td-right">$277.8K</td></tr>
+<tr><td>Fri 17 Oct</td><td class="td-right">$28,114</td><td class="td-right">6,415</td><td class="td-right">$456.6K</td></tr>
+<tr><td>Sat 18 Oct</td><td class="td-right">$-3,188</td><td class="td-right">7,155</td><td class="td-right">$358.0K</td></tr>
+<tr><td>Sun 19 Oct</td><td class="td-right">$5,624</td><td class="td-right">6,912</td><td class="td-right">$434.0K</td></tr>
+
+</table>
+
+<h2>4. Hourly Activity Pattern</h2>
+<div class="chart-container">
+<div class="chart-wrap"><canvas id="hourlyChart"></canvas></div>
+</div>
+
+<h2>5. GGR by Game by Day</h2>
+<table class="summary-table">
+<tr><th>Date</th><th class="td-right port-color">Port Roulette</th><th class="td-right sky-color">Sky Roulette</th><th class="td-right">Daily Total</th></tr>
+<tr><td>Mon 13 Oct</td><td class="td-right ">$8,649</td><td class="td-right ">$22,024</td><td class="td-right "><strong>$30,673</strong></td></tr>
+<tr><td>Tue 14 Oct</td><td class="td-right ">$3,041</td><td class="td-right ">$62,138</td><td class="td-right "><strong>$65,179</strong></td></tr>
+<tr><td>Wed 15 Oct</td><td class="td-right ">$5,747</td><td class="td-right down">$-8,050</td><td class="td-right down"><strong>$-2,303</strong></td></tr>
+<tr><td>Thu 16 Oct</td><td class="td-right down">$-4,818</td><td class="td-right ">$2,841</td><td class="td-right down"><strong>$-1,977</strong></td></tr>
+<tr><td>Fri 17 Oct</td><td class="td-right ">$10,347</td><td class="td-right ">$17,767</td><td class="td-right "><strong>$28,114</strong></td></tr>
+<tr><td>Sat 18 Oct</td><td class="td-right down">$-6,020</td><td class="td-right ">$2,832</td><td class="td-right down"><strong>$-3,188</strong></td></tr>
+<tr><td>Sun 19 Oct</td><td class="td-right ">$10,184</td><td class="td-right down">$-4,560</td><td class="td-right "><strong>$5,624</strong></td></tr>
+
+</table>
+
+<div class="chart-container">
+<div class="chart-wrap"><canvas id="gameByDayChart"></canvas></div>
+</div>
+
+<h2>6. Notable Single-Hour Events</h2>
+<p>This week's notable single-hour events included the largest positive single-hour outcome of <strong>$27,257 GGR</strong> on Sky Roulette (2025-10-14 08:00:00, $30,700 wagered, 47 players); the largest negative single-hour outcome of <strong>$-8,553 GGR</strong> on Sky Roulette (2025-10-19 21:00:00, $23,143 wagered, 18 players); the largest single-hour wagering of <strong>$216,179</strong> on Sky Roulette (2025-10-14 06:00:00, $19,073 GGR, 34 players).</p>
+
+<table class="summary-table">
+<tr><th>Date / Hour</th><th>Game</th><th class="td-right">Wagered</th><th class="td-right">GGR</th><th class="td-right">Players</th></tr>
+<tr><td>2025-10-14 08:00:00</td><td class="sky-color">Sky Roulette</td><td class="td-right">$30,700</td><td class="td-right up">$27,257</td><td class="td-right">47</td></tr>
+<tr><td>2025-10-13 15:00:00</td><td class="sky-color">Sky Roulette</td><td class="td-right">$27,664</td><td class="td-right up">$20,523</td><td class="td-right">43</td></tr>
+<tr><td>2025-10-14 06:00:00</td><td class="sky-color">Sky Roulette</td><td class="td-right">$216,179</td><td class="td-right up">$19,073</td><td class="td-right">34</td></tr>
+<tr><td>2025-10-19 21:00:00</td><td class="sky-color">Sky Roulette</td><td class="td-right">$23,143</td><td class="td-right down">$-8,553</td><td class="td-right">18</td></tr>
+<tr><td>2025-10-15 06:00:00</td><td class="sky-color">Sky Roulette</td><td class="td-right">$2,668</td><td class="td-right down">$-7,433</td><td class="td-right">52</td></tr>
+<tr><td>2025-10-18 23:00:00</td><td class="port-color">Port Roulette</td><td class="td-right">$18,451</td><td class="td-right down">$-4,900</td><td class="td-right">14</td></tr>
+
+</table>
+
+<h2>7. Top Operators</h2>
+<table class="summary-table">
+<tr><th>#</th><th>Operator</th><th class="td-right">GGR</th><th class="td-right">Share</th><th class="td-right">Wagered</th><th class="td-right">Margin</th><th class="td-right">Rounds</th></tr>
+<tr><td>1</td><td><strong>stakecom</strong></td><td class="td-right">$115,910</td><td class="td-right">94.9%</td><td class="td-right">$1.44M</td><td class="td-right">8.05%</td><td class="td-right">23,638</td></tr>
+<tr><td>2</td><td><strong>stakeus</strong></td><td class="td-right">$6,212</td><td class="td-right">5.1%</td><td class="td-right">$1.00M</td><td class="td-right">0.62%</td><td class="td-right">23,279</td></tr>
+
+</table>
+
+<h2>8. Top Sub-Partners</h2>
+<table class="summary-table">
+<tr><th>#</th><th>Sub-Partner</th><th>Operator Hub</th><th class="td-right">GGR</th><th class="td-right">Share</th><th class="td-right">Wagered</th></tr>
+<tr><td>1</td><td><strong>Stake.com</strong></td><td>stakecom</td><td class="td-right">$115,910</td><td class="td-right">94.9%</td><td class="td-right">$1.44M</td></tr>
+<tr><td>2</td><td><strong>Stake.us</strong></td><td>stakeus</td><td class="td-right">$6,212</td><td class="td-right">5.1%</td><td class="td-right">$1.00M</td></tr>
+
+</table>
+
+<h2>9. Recommended Actions</h2>
+<ol class="actions-list">
+<li><strong>Operator concentration monitoring.</strong> Top operator (stakecom) contributed 94.9% of weekly GGR. Continue monitoring concentration risk as portfolio scales.</li>
+<li><strong>Continue operational data validation.</strong> Confirm all expected operators and sub-partners reporting correctly for the period. Document any data anomalies for ongoing tracking.</li>
+</ol>
+
+<div class="confidential">Confidential - Board and SLT Distribution Only  |  Historical Report - Backfilled June 2026</div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+new Chart(document.getElementById('dowChart').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: ['Mon 13', 'Tue 14', 'Wed 15', 'Thu 16', 'Fri 17', 'Sat 18', 'Sun 19'],
+    datasets: [{
+      label: 'Daily GGR ($)',
+      data: [30673, 65179, -2303, -1977, 28114, -3188, 5624],
+      backgroundColor: [30673, 65179, -2303, -1977, 28114, -3188, 5624].map(function(v) { return v >= 0 ? '#2d6a4f' : '#c1121f'; }),
+      borderRadius: 3, barPercentage: 0.7
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    layout: { padding: { left: 5, right: 5, top: 5, bottom: 5 } },
+    plugins: { legend: { display: false }, title: { display: true, text: 'Daily GGR - Week 6', font: { size: 14, weight: '600' } } },
+    scales: { y: { grid: { color: '#f0f0f0' }, ticks: { callback: function(v) { return '$' + v.toLocaleString(); } } }, x: { grid: { display: false }, ticks: { autoSkip: false, maxRotation: 0, minRotation: 0, font: { size: 11 } } } }
+  }
+});
+
+new Chart(document.getElementById('hourlyChart').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: Array.from({length: 24}, function(_, i) { return i + ':00'; }),
+    datasets: [
+{ label: 'Port Roulette', data: [14136, 6690, 5047, 4401, 4304, 3030, 3399, 6557, 1724, 3383, 5562, 12236, 6043, 4147, 2536, 3806, 5047, 5044, 4359, 6495, 5776, 5255, 8984, 12697], borderColor: '#800020', backgroundColor: 'rgba(0,0,0,0.05)', tension: 0.3, pointRadius: 2, borderWidth: 2, fill: false },
+{ label: 'Sky Roulette', data: [21530, 6524, 10554, 9377, 7537, 7441, 35551, 7151, 8363, 2281, 3084, 7134, 4865, 5359, 3375, 7090, 4307, 3414, 8025, 9833, 7033, 9409, 10425, 8464], borderColor: '#0891b2', backgroundColor: 'rgba(0,0,0,0.05)', tension: 0.3, pointRadius: 2, borderWidth: 2, fill: false },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    layout: { padding: { left: 5, right: 5, top: 5, bottom: 5 } },
+    plugins: { title: { display: true, text: 'Hourly Wagering Pattern - Avg per Day ($)', font: { size: 14, weight: '600' } } },
+    scales: { y: { grid: { color: '#f0f0f0' }, ticks: { callback: function(v) { return '$' + v.toLocaleString(); } } }, x: { grid: { display: false }, ticks: { autoSkip: false, maxRotation: 0, minRotation: 0, font: { size: 9 } } } }
+  }
+});
+
+new Chart(document.getElementById('gameByDayChart').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: ['Mon 13', 'Tue 14', 'Wed 15', 'Thu 16', 'Fri 17', 'Sat 18', 'Sun 19'],
+    datasets: [
+{ label: 'Port Roulette', data: [8649, 3041, 5747, -4818, 10347, -6020, 10184], backgroundColor: '#800020', borderRadius: 2 },
+{ label: 'Sky Roulette', data: [22024, 62138, -8050, 2841, 17767, 2832, -4560], backgroundColor: '#0891b2', borderRadius: 2 },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    layout: { padding: { left: 5, right: 5, top: 5, bottom: 5 } },
+    plugins: { legend: { position: 'top', labels: { usePointStyle: true, pointStyle: 'rect', padding: 16 } }, title: { display: true, text: 'GGR by Game by Day ($)', font: { size: 14, weight: '600' } } },
+    scales: { x: { stacked: true, grid: { display: false }, ticks: { autoSkip: false, maxRotation: 0, minRotation: 0, font: { size: 11 } } }, y: { stacked: true, grid: { color: '#f0f0f0' }, ticks: { callback: function(v) { return '$' + (v/1000).toFixed(0) + 'K'; } } } }
+  }
+});
+
+});
+</script>
+</body>
+</html>
